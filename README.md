@@ -1,2 +1,16 @@
-# JiraChatBot
-This is Jira bot I am developing, ask any questions related to JIRA activity
+## Requirements
+
+* Python 3
+* Ollama
+* After installing Ollama run
+
+
+```
+$ ollama run codellama:13b-instruct
+```
+
+## Run Server
+
+```
+python server.py
+```
