@@ -11,7 +11,7 @@ def generate_summary(audit_data) -> str:
     """
     Send a question about audit of activities to the LLM for processing
     Args:
-        question (str): Natural language question about audit of activities
+        audit_data (list[dict]): This is array of audit data in json format, contains activity information as each json element
     Returns:
         str: LLM's response to the question
     """

@@ -27,10 +27,11 @@ def post_data():
 @app.route('/get-summary', methods=['POST'])
 def get_summary():
     audit_data = request.json
-    if not audit_data:
+    print(audit_data["data"])
+    if not audit_data["data"]:
         return jsonify({"status": "error", "message": "Invalid data"}), 400
 
-    summary = generate_summary(audit_data)
+    summary = generate_summary(audit_data["data"])
     return jsonify({"status": "success", "message": "Summary generated successfully", "data": summary})
 
 
