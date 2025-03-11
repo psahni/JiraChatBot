@@ -52,3 +52,4 @@ def generate_summary(audit_data) -> str:
 
 output = generate_summary(audit_data)
 print(output)
+
