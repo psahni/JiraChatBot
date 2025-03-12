@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from jira_llm import generate_summary
+from summary import generate_summary
 
 app = Flask(__name__)
 

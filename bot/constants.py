@@ -1,0 +1,7 @@
+status_list = [
+    "COMMENT_ADDED",
+    "MULTIPLE_UPDATE",
+    "STATUS_CHANGED"
+    "SINGLE_FIELD_UPDATED",
+    "ASSIGNEE_CHANGED"
+]

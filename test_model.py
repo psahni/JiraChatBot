@@ -5,12 +5,14 @@ from sample_audit_data import audit_data
 model_name = "interstellarninja/hermes-2-pro-llama-3-8b-tools:latest"
 api_key = "ollama"
 
+## Summary prompt
 # query = ("Please generate detailed summary of the audit response. "
 #          "Please cover every comment left. "
 #          "Please list every issue has status transition"
 #          "Please list every issue has assignee changed"
 #          "Give me summary in bulleted list")
 
+## Question and Answer prompt
 query = ("Please give list of tickets with IDs with ASSIGNEE_CHANGED. Include all detail of the ticket. Please give text response in bulleted list")
 def generate_summary(audit_data) -> str:
     """
