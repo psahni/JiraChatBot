@@ -1,1 +1,4 @@
 sample_audit_data.py
+ bot/__pycache__/
+ __pycache__/
+.idea/
