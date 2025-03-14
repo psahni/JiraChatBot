@@ -1,5 +1,8 @@
+import re
 from flask import Flask, request, jsonify
+from sample_audit_data import audit_data
 from summary import generate_summary
+from bot.main import process
 
 app = Flask(__name__)
 
@@ -26,13 +29,19 @@ def post_data():
 
 @app.route('/get-summary', methods=['POST'])
 def get_summary():
-    audit_data = request.json
-    print(audit_data["data"])
-    if not audit_data["data"]:
-        return jsonify({"status": "error", "message": "Invalid data"}), 400
+    req = request.json
+    print(req["query"])
+    if not req["query"]:
+        return jsonify({"status": "error", "message": "query is blank"}), 400
 
-    summary = generate_summary(audit_data["data"])
-    return jsonify({"status": "success", "message": "Summary generated successfully", "data": summary})
+    pattern = r"\b(summary|summerization|summerize)\b"
+
+    if re.search(pattern, req["query"], re.IGNORECASE):
+        print(req["query"])
+        output = generate_summary(audit_data)
+    else:
+        output = process(req["query"])
+    return jsonify({"status": "success", "message": "Summary generated successfully", "data": output })
 
 
 if __name__ == '__main__':

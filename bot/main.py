@@ -1,6 +1,6 @@
 from openai import OpenAI
-from prompt import system_prompt
-from actions import filterIssuesByStatus
+from bot.actions import filterIssuesByStatus
+from bot.prompt import system_prompt
 
 model_name = "interstellarninja/hermes-2-pro-llama-3-8b-tools:latest"
 client = OpenAI(
@@ -32,14 +32,14 @@ def genAIResponse(response):
         messages=[
             {
                 "role": "assistant",
-                "content": f"You are AI assistant, you generate meaningful response from text input. The text input is {response}"
+                "content": f"You are AI assistant, you generate meaningful response from text input. Context: {response}. Generate meaningful response from the context given"
             }
         ],
     )
 
     return response.choices[0].message.content
 
-def main(query):
+def process(query):
     messages = [
         {
             "role": "system",
@@ -62,6 +62,7 @@ def main(query):
 
     message = response.choices[0].message
     response_messages = []
+    print(message)
     for tool in message.tool_calls:
         function_to_call = available_functions.get(tool.function.name)
         if function_to_call:
@@ -70,5 +71,6 @@ def main(query):
 
     return response_messages
 
-output = main("List all the issues on which comment has been added. Please also tell ticket ID")
-print('\n'.join(output))
+# output = main("List all the issues on which comment has been added. Please also tell ticket ID")
+# print('\n'.join(output))
+# List all the issues on which MULTIPLE_UPDATE. Please give Jira issue ID also.
